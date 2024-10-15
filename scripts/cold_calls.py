@@ -1,15 +1,22 @@
 import sys
+import csv
 import random
 
-def main():
-    cl_list = sys.argv[1]
-    classlist = []
-    for l in open(cl_list, 'r'):
-        l = l.strip()
-        classlist.append(l)
+def read_coldcall_list(f):
+    eligible = []
+    with open(f, 'r') as infile:
+        reader = csv.reader(infile)
+        next(reader)
+        for row in reader: 
+            if row[2] == "0":
+                eligible.append(row[1])
+    return eligible
 
-    random.shuffle(classlist)
-    print(classlist[0])
+def main():
+    coldcall_list = sys.argv[1]
+    eligible = read_coldcall_list(coldcall_list)
+    random.shuffle(eligible)
+    print(eligible[0])
 
 if __name__ == "__main__":
     main()
