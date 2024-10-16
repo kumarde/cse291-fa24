@@ -8,7 +8,7 @@ def read_coldcall_list(f):
         reader = csv.reader(infile)
         next(reader)
         for row in reader: 
-            if row[2] == "0":
+            if row[2] == "1":
                 eligible.append(row[1])
     return eligible
 
